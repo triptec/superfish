@@ -1,13 +1,13 @@
 
 /*
- * Superfish v1.4.8 - jQuery menu widget
+ * Superfish v1.4.9 - jQuery menu widget
  * Copyright (c) 2008 Joel Birch
  *
  * Dual licensed under the MIT and GPL licenses:
  * 	http://www.opensource.org/licenses/mit-license.php
  * 	http://www.gnu.org/licenses/gpl.html
  *
- * CHANGELOG: http://users.tpg.com.au/j_birch/plugins/superfish/changelog.txt
+ * CHANGELOG: https://github.com/triptec/superfish/blob/master/changelog.txt
  */
 
 ;(function($){
@@ -46,7 +46,7 @@
 			});
 			sf.o[s] = sf.op = o;
 			
-			$('li:has(ul)',this)[($.fn.hoverIntent && !o.disableHI) ? 'hoverIntent' : 'hover'](over,out).each(function() {
+			$('li:has(ul)',this)[($.fn.hoverIntent && !o.disableHI) ? 'hoverIntent' : (o.enableClick) ? 'click' : 'hover' ](over,out).each(function() {
 				if (o.autoArrows) addArrow( $('>a:first-child',this) );
 			})
 			.not('.'+c.bcClass)
@@ -90,6 +90,7 @@
 		speed		: 'normal',
 		autoArrows	: true,
 		dropShadows : true,
+		enableClick : false,		// true enables click detection (if disableHI is true or if there's no hoverIntent)
 		disableHI	: false,		// true disables hoverIntent detection
 		onInit		: function(){}, // callback functions
 		onBeforeShow: function(){},
